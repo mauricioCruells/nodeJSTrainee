@@ -1,0 +1,19 @@
+- users can be created updated and deleted
+- every user has an id, a first name, a last name
+- a query can be made to know when a user was created and last updated
+- every user should also have a username and a password which is encrypted
+- a user can be logged in or not by tracking some field
+- users can have a list of recommended articles by other users
+
+- news articles url can be saved in a different table
+- news saved will have information about: title, author, url and published database
+
+- users can save many news articles only if logged in
+- articles can be saved by many users
+- users can recommend articles to other users by saving a news article in some recommended field
+- users can list what articles they have saved
+- users can list what articles they have been recommended
+- users can only see their own saved or recommended articles but not the articles of other users
+ 
+
+

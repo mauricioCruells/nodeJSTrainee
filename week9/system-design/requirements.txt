@@ -1,0 +1,43 @@
+*provide a DB dump and a postman collection
+*follow best API testing practices
+*follow REST API best practices
+*try to use design patterns that help fix a problem
+*use postgresql
+*have 2 databases, one for production and one for testing
+
+----------- MOVIES --------------
+*CRUD operations on movies
+*include tags for movies
+*fields for movies:
+    -title
+    -description
+    -poster
+    -stock
+    -trailer
+    -sale price
+    -likes
+    -avialability(inventory)
+
+---------- USERS ---------------
+*CRUD operations on users
+*One admin account must exist
+*admin is handled by role
+*roles are: admin or client
+*clients can rent movies, return them or buy them
+*users can query a list of movies (sorted alphabetically)
+
+--------------TESTING -------------
+*unit tests
+*integration tests
+
+--------------SECURITY-------------
+*Any user can view a list of available movies
+*Any user can see a movie's details
+*only admins can add/modify/remove movies
+*only logged in users can buy/rent a movie
+*logging/logout is done through JWT
+*only admins can add or remove tags
+
+------------- EXTRA ---------------
+*Send and email when a user rents/buys a movie with important information
+*Allow an admin to change a user's role both ways

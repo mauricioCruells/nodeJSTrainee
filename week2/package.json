@@ -1,0 +1,47 @@
+{
+  "name": "rle",
+  "version": "0.1.0",
+  "description": "homework for week 2 - applaudo trainee program",
+  "main": "bin/index.js",
+  "engines": {
+    "node": ">=8.3.0"
+  },
+  "scripts": {
+    "compile": "npx tsc",
+    "lint": "eslint . --ext .ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/trainee-nodejs/week2-rle.git"
+  },
+  "keywords": [
+    "applaudo",
+    "trainee",
+    "RLE"
+  ],
+  "author": "Mauricio Castro",
+  "license": "ISC",
+  "bin": {
+    "rle": "./bin/index.js"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/trainee-nodejs/week2-rle/issues"
+  },
+  "homepage": "https://gitlab.com/trainee-nodejs/week2-rle#readme",
+  "devDependencies": {
+    "@types/node": "^18.11.9",
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "@typescript-eslint/parser": "^5.43.0",
+    "eslint": "^8.27.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-airbnb-typescript-prettier": "^5.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.7.1",
+    "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "yargs": "^17.6.2"
+  }
+}

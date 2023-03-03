@@ -1,0 +1,22 @@
+import { Test } from '@nestjs/testing';
+import { MovieRepository } from '../../../backup/src/movies/repositories/movie.repository';
+import { TagRepository } from '../../../backup/src/movies/repositories/tag.repository';
+
+jest.mock('../repositories/tag.repository');
+jest.mock('../repositories/movie.repository');
+
+describe('MovieRepository', () => {
+  let movieRepository: MovieRepository;
+
+  beforeAll(async () => {
+    const module = await Test.createTestingModule({
+      providers: [MovieRepository, TagRepository],
+    }).compile();
+
+    movieRepository = module.get<MovieRepository>(MovieRepository);
+  });
+
+  test('it should be defined', () => {
+    expect(movieRepository).toBeDefined();
+  });
+});

@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------
+INITIALIZE DATABASE:
+1. developer creates a new database for production and for testing
+2. developer uses migrations to create tables and relationships
+3. developer uses faker package to populate with dummy database
+(tests)
+- production database with right columns
+- testing database with right columns
+- testing database with correct data populated
+
+--------------------------------------------------------------------------
+CONFIRM RETURN BY EMAIL:
+1. user returns a movie
+2. email is generated with returned receipt info
+(tests)
+- email contains receipt information
+- email to be sent to is valid
+--------------------------------------------------------------------------
+CONFIRM RENTAL BY EMAIL:
+1. user rents a movie
+2. email is generated with rented receipt info
+(tests)
+- email contains receipt information
+- email to be sent to is valid
+--------------------------------------------------------------------------
+CONFIRM BUY BY EMAIL:
+1. user buys a movie
+2. email is generated with bought receipt info
+(tests)
+- email contains receipt information
+- email to be sent to is valid

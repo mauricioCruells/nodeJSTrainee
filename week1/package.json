@@ -1,0 +1,45 @@
+{
+  "name": "sed_implementation",
+  "version": "0.1.0",
+  "description": "homework for week 1 - Node.JS Trainee Program Applaudo",
+  "main": "bin/index.js",
+  "engines": {
+    "node": ">=8.3.0"
+  },
+  "scripts": {
+    "start": "node ./bin/index.js",
+    "style": "npx prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/week1node/sed-implementation.git"
+  },
+  "keywords": [
+    "sed",
+    "applaudo",
+    "trainee",
+    "Node.JS"
+  ],
+  "author": "Mauricio Castro",
+  "license": "ISC",
+  "bin": {
+    "seder": "./bin/index.js"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/week1node/sed-implementation/issues"
+  },
+  "homepage": "https://gitlab.com/week1node/sed-implementation#readme",
+  "devDependencies": {
+    "eslint": "^8.27.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "2.7.1"
+  },
+  "dependencies": {
+    "yargs": "^17.6.2"
+  }
+}

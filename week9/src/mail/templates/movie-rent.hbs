@@ -1,0 +1,9 @@
+<h2>Movie Rental Receipt</h2>
+
+<p>Hello {{name}},</p>
+
+<p>Here's the details for your recent rental:</p>
+
+<p>{{#each rentals}}
+    Movie: {{title}}, Return: {{returnDate}}
+    {{/each}}</p>

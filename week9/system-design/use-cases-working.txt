@@ -1,0 +1,378 @@
+--------------------------------------------------------------------------
+CREATE USERS:
+1. Admin logs in
+2. Admin has user information including username, password and role
+3. Admin hits endpoint to create user
+4. user information is added to the database
+    4.1 endpoint responds with user details and it's role, NO PASSWORD
+    4.2 endpoint responds with validation error if wrong user information
+    4.3 response with unathorized error if user is not admin
+    4.4 response with duplicate error if user already exists
+(tests)
+- validation for proper user info happens
+- endpoint is valid for user creation only
+-(done) on duplicate user throws duplicate error
+- endpoint only accepts creation when admin role is present
+-(done) user information is correctly added to database
+- if no user is logged in throw unauthorized error
+- endpoint returns error when wrong information
+- endpoint returns error when not an admin
+--------------------------------------------------------------------------
+UPDATE USERS:
+1. Admin logs in
+2. Admin has id and new info for user
+3. Admin hits endpoint to update user
+4. user information is updated from the database
+    5.1 response with new user details
+    5.2 response with validation error if wrong user information
+    5.3 response with unathorized error if user not admin 
+    5.4 response with not found error if user doesn't exist
+    5.5 responds with duplicate error if update info already exists
+(tests)
+- validation for proper new user info
+- endpoint is valid for user update only
+- endpoint only accepts update when admin role is present
+- user information is correctly updated to database
+- if a user with the same info exists a duplicate error is thrown 
+- if no user is logged in throw unauthorized error
+- endpoint returns error when wrong information
+- endpoint returns error when id of user not found
+- endpoint returns error when not an admin
+--------------------------------------------------------------------------
+DELETE USERS:
+1. Admin logs in
+2. Admin has id of user to delete
+3. Admin hits endpoint to delete user
+4. user is removed from database
+    4.1 do not delete if last admin account, throw not allowed error  
+    4.2 respond with unathorized error if user is not admin
+    4.3 respond with not found error if no user has id
+    4.4 bought movies are not deleted
+    4.5 if user has rented movies do not delete
+(tests)
+- error is thrown if no id found
+- error is thrown if not admin
+- error is thrown if last admin
+- if no user is logged in throw unauthorized error
+- bought movies are not deleted if user is deleted 
+- if user has rented active movies it's not deleted
+- user succesfully deleted from database
+--------------------------------------------------------------------------
+LIST USERS:
+1. Admin 
+2. Admin hits endpoint to list all users
+3. endpoint responds with a list of all users ordered alphabetically
+    3.1 list has pagination
+4. endpoint can accept query params such as search and filters
+    4.1 if no name existx for q param throw not found error
+(tests)
+- endpoint returns a list of users 
+- list of users is sorted alphabetically
+- user results are paginated
+- number of user return is maximum the pagination limit
+- number of results is correct
+- when param q is used the list of user shows filtered results by name
+- throws not found error when no name exists
+- when param sort is used the list of users is sorted
+--------------------------------------------------------------------------
+FIND ONE USER:
+1. Admin Logs in
+2. Admin hits endpoint to list one user by id
+3. endpoint responds with selected user
+    3.1 if user doesn't exist respond with not found error
+    3.2 response has the same shape as when listing all users
+(tests)
+- endpoint only returns one user    
+- if user doesn't exist not found error is thrown
+- admins can find one user
+--------------------------------------------------------------------------
+CREATE MOVIE:
+1. Admin logs in
+2. Admin starts with movie information
+3. Admin hits endpoint to create movie
+4. movie information is added to the database
+    4.1 endpoint responds with movie details of newly created entry and status
+    4.2 endpoint responds with validation error if wrong movie information
+    4.3 response with unathorized error if user is not admin
+    4.4 response with duplicate error if movie already exists
+(tests)
+- validation for proper movie info happens
+- endpoint is valid for movie creation only
+- on duplicate movie throws duplicate error
+- endpoint only accepts creation when admin role is present
+- movie information is correctly added to database
+- if no user is logged in throw unauthorized error
+- endpoint returns error when wrong information
+- endpoint returns error when not an admin
+--------------------------------------------------------------------------
+UPDATE A MOVIE:
+1. Admin logs in
+2. Admin has id and new info for movie
+3. Admin hits endpoint to update movie
+4. movie information is updated from the database
+    5.1 response with new movie details
+    5.2 response with validation error if wrong movie information
+    5.3 response with unathorized error if user not admin 
+    5.4 response with not found error if movie doesn't exist
+    5.5 responds with duplicate error if update info already exists
+(tests)
+- validation for proper new movie info
+- endpoint is valid for movie update only
+- endpoint only accepts creation when admin role is present
+- movie information is correctly updated to database
+- if a movie with the same info exists a duplicate error is thrown 
+- tags can be updated only by admin
+- if no user is logged in throw unauthorized error
+- endpoint returns error when wrong information
+- endpoint returns error when id of movie not found
+- endpoint returns error when not an admin
+--------------------------------------------------------------------------
+DELETE A MOVIE:
+1. Admin logs in
+2. Admin has id of movie to delete
+3. Admin hits endpoint to delete movie
+4. movie is removed from database
+    5.1 do not delete if movie is rented, notify admin
+    5.2 respond with unathorized error if user is not admin
+    5.3 respond with not found error if no movie has id
+(tests)
+- error is thrown if no id found
+- error is thrown if not admin
+- if no user is logged in throw unauthorized error
+- tags are not deleted, when movie is deleted
+- movie succesfully deleted from database
+- movie not deleted if movie is rented
+    - user info for rental is shown
+--------------------------------------------------------------------------
+LIST ALL MOVIES:
+1. Admin or Client logs in 
+2. Admin or User hits endpoint to list all Movies
+3. endpoint responds with a list of all Movies ordered alphabetically
+    3.1 if Admin reponse includes rental status and id of User that rented
+    3.2 list has pagination
+4. endpoint can accept query params such as search and filters
+(tests)
+- endpoint returns a list of movies 
+- list of movies is sorted alphabetically
+- movie results are paginated
+- number of movies return is maximum the pagination limit
+- number of results is correct
+- when admin uses endpoint rental status and id of client is returned
+- when client uses endpoint rental status and id of client is not returned
+- when param q is used the list of movies shows filtered results by search
+- when param tags is used the list movies shows filtered results by tags
+- when param sort is used the list of movies is sorted
+--------------------------------------------------------------------------
+FIND ONE MOVIE:
+1. Admin or Client
+2. Admin or Client hits endpoint to list one movie by id
+3. endpoint respond with selected movie
+    3.1 if movie doesn't exist respond with not found error
+    3.2 response has the same shape as when listing all Movies
+(tests)
+- endpoint only returns one movie    
+- if movie doesn't exist not found error is thrown
+- admins can find one movie
+- users can find one movie
+--------------------------------------------------------------------------
+CREATE TAGS:
+1. Admin logs in
+2. Admin hits endpoint for creating tags with info
+3. endpoint responds with new tag created
+    3.1 responds with an unauthorized error if user is not admin 
+    3.2 response contains newly created tag
+    3.3 if tag already exists in database notify admin and return duplicate error
+(tests)
+- endpoint accepts a single tag 
+- endpoint accepts a list of comma separated tags
+- if a tag already exists in database throws duplicate error
+--------------------------------------------------------------------------
+UPDATE TAGS:
+1. Admin logs in
+2. Admin hits endpoint to update a tag with id
+3. endpoint responds with updated tag info
+    3.1 responds with duplicate error if another tag already exists
+    3.2 response contains updated tag
+    3.3 responds with unathorized error if not admin
+    3.4 responds with not found if tag doesn't exist
+(tests)
+- endpoint allows for tag update
+- endpoint throws unathorized error if not admin
+- endpoint throws unathorized error if not logged in
+- if tag already exists throws duplicate error  
+--------------------------------------------------------------------------
+DELETE TAGS:
+1. Admin logs in 
+2. Admin hits endpoint to delete a tag with id
+3. endpoint responds with status of delete
+    3.1 if no tag exists throws not found error
+    3.2 if tag is being used by a movie rental and it's the last one with 
+        that tag do not delete and notify admin
+    3.3 if not admin cannot delete 
+    3.4 if not logged in cannot delete
+(tests)
+- endpoint allows for tag to be deleted
+- endpoint throws unauthorized if not admin
+- endpoint throws error if not logged in
+- endpoint throws error if tag being used and last movie rented
+--------------------------------------------------------------------------
+LIST TAGS:
+1. Admin or Client logs in 
+2. Admin or Client hits endpoint to list all tags 
+3. endpoint responds with a list of all Tags ordered alphabetically
+    3.1 list has pagination
+(tests)
+- endpoint returns a list of tags 
+- list of tags is sorted alphabetically
+- tags results are paginated
+- number of tags returned is maximum the pagination limit
+- number of results is correct
+--------------------------------------------------------------------------
+FIND ONE TAG:
+1. Admin or Client logs in 
+2. Admin or Client hits endpoint to list one tag by id
+3. endpoint responds with selected tag
+    3.1 if tag doesn't exist respond with not found error
+    3.2 response has the same shape as when listing all tags 
+(tests)
+- endpoint only returns one tag 
+- if tag doesn't exist not found error is thrown
+- admins can find one movie
+- users can find one movie
+--------------------------------------------------------------------------
+ADD TAG TO MOVIE:
+1. Admin logs in
+2. Admin hits endpoint to add a tag with id to a movie id
+3. endpoint responds with current tags for that movie
+    3.1 if movie already has that tag notify admin, no changes
+    3.2 response contains all tags for that movie
+    3.3 if not an admin or not logged in throw unauthorized error  
+    3.4 if no movie exist throw not found error
+    3.5 if no tag exists throw not found erro
+(tests)
+- tag is added to movie
+- if tag already exists notify admin    
+- if user is not admin throw unauthorized error
+- if user is not logged in throw unauthorized error
+- when movie id or tag id doens't exist in database throw not found error 
+--------------------------------------------------------------------------
+REMOVE TAG FROM MOVIE:
+1. Admin logs in 
+2. Admin hits endpoint to remove a tag with id from a movie with id
+3. endpoint responds with status of remove 
+    3.1 if tag is currently being used by just one rental, notify admin
+    3.2 if no tag exists throw not found error  
+    3.3 if no movie exists throw not found error
+(tests)
+- tag is properly deleted and relationships also removed
+- if last tag being used on last rented movie notify admin
+- if tag doens't exists throw not found error
+- if movie doens't exists throws not found error     
+--------------------------------------------------------------------------
+UPDATE USER ROLE:
+1. Admin logs in
+2. Admin hits endpoint to change user's role with new one by user id
+    2.1 api responds with new updated info
+    2.2 if no user is found throw not found error
+    2.3 if user was already new role notify admin, no change
+(tests)
+- only admin can hit endpoint
+- role is properly updated
+- response contains new user info
+- when no user is found error is thrown
+- when user is already same role notify in response
+--------------------------------------------------------------------------
+LOG IN:
+1. user attempts log in with credentials
+    1.1 if incorrect password or username throw unauthenticaded error
+2. user account logged in status is updated
+3. endpoint responds with succesful log in message and JWT 
+(tests)
+- incorrect password is checked
+- incorrect username is checked
+- for correct credentials logged in status is updated
+- JWT is generated
+- if incorrect credentials unathenticated error is thrown 
+--------------------------------------------------------------------------
+LOG OUT:
+1. user attempts to log out by hitting endpoint
+    1.1 if user is not logged in notify with a message
+2. user account logged out status is updated
+3. endpoint responds with sucessful log out message and adds jwt to invalid list
+(tests)
+- if user is not logged in show a message
+- user can log out succesfully
+- jwt is added to invalid list (updated is invalid state)
+--------------------------------------------------------------------------
+SIGN UP: 
+1. user constructs signup body
+2. user hits endpoint to signup 
+    2.1 if user provides invalid information throw error with bad request   
+3. message is returned with signup info 
+(tests)
+- user can signup properly
+- user info is added to database
+- user's password is hashed and stored
+- when invalid signup info is provided throws error
+--------------------------------------------------------------------------
+BUY A MOVIE:
+1. Admin or Client logs in
+2. user selects a movie to be bought (passing it through request body)
+    2.1 if no movie exists with id throw not found error 
+3. movie is checked to see if rented
+    3.1 if movie is rented check if a copy is available
+    3.2 if no copy is available notify user of availability
+4. user pays for movie (no implementation in this project)
+5. movie is deducted from available
+6. receipt is made and stored in bought table (serves as bought history)
+7. user is notified of transaction succesful
+(tests)
+- if no user is logged in throw an error
+- if movie id doens't exists throws error
+- if no movie available user is notified
+- if a movie is bought checks if one copy is available
+- movie is deducted from avilable movies after payment
+- receipt has proper info
+- receipt is stored in bought table
+--------------------------------------------------------------------------
+RENT A MOVIE:
+1. Admin or Client logs in
+2. user selects a movie to be rented (passing it through request body)
+    2.1 if no movie exists with id throw not found error 
+3. movie is checked to see if rented
+    3.1 if movie is rented check if a copy is available
+    3.2 if no copy is available notify user of availability
+4. user pays for rental (no implementation in this project)
+5. movie is deducted from available
+6. movie is added to rented
+7. receipt is made and stored in rental (serves as rental history)
+8. user is notified of transaction succesful
+(tests)
+- if no user is logged in throw an error
+- if movie id doesn't exists throws an error
+- if movie is rented and it was the only copy notifies user
+- if a movie is rented checks if a copy is available
+- movie is deducted from available after payment
+- movie is added to rented after available
+- receipt is generated with proper info
+- receipt is stored in rented table
+--------------------------------------------------------------------------
+RETURN A MOVIE:
+1. Admin or Client logs in
+2. user selects a movie to be returned (passing it through request body)
+    2.1 if no movie exists with id throw not found error 
+    2.2 if user has no rented movies throws error
+3. movie is checked to see if rented
+    3.1 if movie is rented and only one copy exists bad request 
+5. movie is added to availability
+6. receipt is made and stored in returns (serves as rental history)
+7. user is notified of transaction succesful
+(tests)
+- if no user is logged in throw an error
+- if no movie id exists throws an error
+- if movie was not rented and only one copy existed throws error
+- if user has no rented movies throws an error
+- movie is added to available
+- movie is removed from rented
+- receipt is generated with proper info
+- receipt is stored in returned table 

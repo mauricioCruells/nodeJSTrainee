@@ -1,0 +1,2 @@
+s/happy/sad/g
+s/sunny/cloudy/

@@ -1,0 +1,47 @@
+import { Test } from '@nestjs/testing';
+import { Movie } from '../../../backup/src/movies/entities/movie.entity';
+import { MoviesService } from '../../../backup/src/movies/movies.service';
+import { MovieRepository } from '../../../backup/src/movies/repositories/movie.repository';
+import { movieStub } from './stubs/movies.stub';
+import * as queries from './stubs/query.stub';
+
+jest.mock('../repositories/movie.repository');
+
+describe('MoviesService', () => {
+  let moviesService: MoviesService;
+  let movieRepository: MovieRepository;
+
+  beforeAll(async () => {
+    const module = await Test.createTestingModule({
+      providers: [MoviesService, MovieRepository],
+    }).compile();
+
+    moviesService = module.get<MoviesService>(MoviesService);
+    movieRepository = module.get<MovieRepository>(MovieRepository);
+  });
+
+  test('should be defined', () => {
+    expect(moviesService).toBeDefined();
+  });
+
+  describe('given findAll()', () => {
+    describe('when called with sort params', () => {
+      let movies: Movie[];
+
+      beforeEach(async () => {
+        movies = await moviesService.findAll(queries.nameLikes);
+      });
+
+      test('then movieRepository.findAllMovies should be called with split params', () => {
+        expect(movieRepository.findAllMovies).toBeCalledWith([
+          queries.name,
+          queries.likes,
+        ]);
+      });
+
+      test('then it should return an array of movies', () => {
+        expect(movies).toEqual([movieStub()]);
+      });
+    });
+  });
+});

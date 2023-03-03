@@ -1,0 +1,272 @@
+{
+	"info": {
+		"_postman_id": "abae99ec-d0cf-44ce-a8df-a596e8df7b70",
+		"name": "blogAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23147435"
+	},
+	"item": [
+		{
+			"name": "posts",
+			"item": [
+				{
+					"name": "all blogposts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/blog",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"blog"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create blogpost",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"test for fifth post\",\r\n    \"body\": \"this is the content for the fifth blog post just for testing purposes\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/blog",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"blog"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test method not implemented for general route",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/blog",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"blog"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Blogpost with id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/blog/{{blogpostid}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"blog",
+								"{{blogpostid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Blogpost with id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/blog/{{blogpostid}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"blog",
+								"{{blogpostid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test method not implemented for id route",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/blog/{{blogpostid}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"blog",
+								"{{blogpostid}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "comments",
+			"item": [
+				{
+					"name": "all comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/comment",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comment\": \"test for third comment\",\r\n    \"belongsToPost\": \"{{postforcomment}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/comment",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test method not implemented for general route",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/comment",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "commentwith id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/comment/{{commentid}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"comment",
+								"{{commentid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Blogpost with id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/comment/{{commentid}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"comment",
+								"{{commentid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test method not implemented for id route",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/comment/{{commentid}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"comment",
+								"{{commentid}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

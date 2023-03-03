@@ -1,0 +1,9 @@
+test;
+showcase;
+dist.env.example.gitignore;
+docker-compose.yml;
+Dockerfile;
+README.md;
+node_modules;
+npm-debug.log;
+movie-rentals-cruells-e58ee15412c7.json
